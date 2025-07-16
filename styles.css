@@ -1,0 +1,220 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	overflow: hidden;
+	background: linear-gradient(135deg, #050515 0%, #0f0f25 50%, #1a1040 100%);
+	font-family: "Arial", sans-serif;
+	height: 100vh;
+	position: relative;
+}
+
+/* Animated stars */
+.stars {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.star {
+	position: absolute;
+	background: white;
+	border-radius: 50%;
+	animation: twinkle 2s infinite alternate;
+}
+
+.star:nth-child(odd) {
+	animation-delay: 1s;
+}
+
+@keyframes twinkle {
+	0% {
+		opacity: 0.3;
+		transform: scale(0.8);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* Ice Planet */
+.moon {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	background: radial-gradient(circle at 30% 30%, #e8f4fd, #b8d4e3, #7fb3d3);
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	box-shadow: 0 0 40px rgba(184, 212, 227, 0.5), inset 0 0 30px
+		rgba(127, 179, 211, 0.3), 0 0 80px rgba(184, 212, 227, 0.3);
+	z-index: 2;
+}
+
+.moon::before {
+	content: "";
+	position: absolute;
+	width: 20px;
+	height: 15px;
+	background: #a5c9ea;
+	border-radius: 50%;
+	top: 25%;
+	left: 35%;
+	box-shadow: 0 0 5px rgba(165, 201, 234, 0.7);
+}
+
+.moon::after {
+	content: "";
+	position: absolute;
+	width: 15px;
+	height: 12px;
+	background: #a5c9ea;
+	border-radius: 50%;
+	top: 55%;
+	left: 55%;
+	box-shadow: 0 0 5px rgba(165, 201, 234, 0.7);
+}
+
+/* Title */
+.title {
+	position: absolute;
+	top: 8%;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	font-size: 3rem;
+	font-weight: bold;
+	text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px
+		rgba(255, 255, 255, 0.3);
+	z-index: 4;
+	text-align: center;
+}
+
+/* Orbital hover zone */
+.orbital-zone {
+	position: absolute;
+	width: 480px;
+	height: 480px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.orbital-zone:hover ~ .endurance .endurance-svg {
+	animation-duration: 50s;
+}
+
+.orbital-zone:hover ~ .endurance .endurance-svg {
+	filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6))
+		drop-shadow(0 0 20px rgba(65, 182, 255, 0.8))
+		drop-shadow(0 0 15px rgba(65, 182, 255, 0.8))
+		drop-shadow(0 0 30px rgba(65, 182, 255, 0.6))
+		drop-shadow(0 0 45px rgba(65, 182, 255, 0.4));
+}
+
+/* Endurance starship */
+.endurance {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	top: 50%;
+	left: 50%;
+	animation: orbit 25s linear infinite;
+	z-index: 3;
+	transition: all 0.3s ease;
+	pointer-events: none;
+}
+
+@keyframes orbit {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg) translateX(200px) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg) translateX(200px)
+			rotate(-360deg);
+	}
+}
+
+/* Star constellation */
+.constellation {
+	position: absolute;
+	top: 12%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 300px;
+	height: 80px;
+	z-index: 5;
+}
+
+.constellation-star {
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+	animation: constellationTwinkle 3s ease-in-out infinite;
+}
+
+.constellation-star:nth-child(odd) {
+	animation-delay: 1s;
+}
+
+.constellation-star:nth-child(even) {
+	animation-delay: 2s;
+}
+
+@keyframes constellationTwinkle {
+	0%,
+	100% {
+		opacity: 0.6;
+		transform: scale(1);
+		box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.2);
+		box-shadow: 0 0 15px rgba(255, 255, 255, 1);
+	}
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	.moon {
+		width: 150px;
+		height: 150px;
+	}
+
+	.orbital-zone {
+		width: 380px;
+		height: 380px;
+	}
+
+	.endurance {
+		width: 70px;
+		height: 70px;
+	}
+
+	.constellation {
+		width: 250px;
+		height: 60px;
+	}
+
+	.constellation-star {
+		width: 3px;
+		height: 3px;
+	}
+
+	.title {
+		font-size: 2rem;
+	}
+}
